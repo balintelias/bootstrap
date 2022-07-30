@@ -1,3 +1,7 @@
+"""
+Python function for generating mock datasets
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
