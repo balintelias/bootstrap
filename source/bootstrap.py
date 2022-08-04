@@ -13,8 +13,8 @@ def func_bootstrap(param):
         count = count + 1
         new_element = np.array(param)[index]
         new_arr.append(new_element)
-    print("new array size")
-    print(len(new_arr))
+    # print("new array size")
+    # print(len(new_arr))
     return new_arr
     
     

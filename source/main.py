@@ -12,6 +12,7 @@ arr = retrieve.func_retrieve()
 
 visual.func_visual(arr)
 
+# bootstrap arr to second_arr
 second_arr = bootstrap.func_bootstrap(arr)
 
 visual.func_visual(second_arr)
