@@ -6,6 +6,7 @@ import generate
 import bootstrap
 import visual
 import retrieve
+import export
 
 help_msg = """Usage:
 -h --Help   
@@ -42,18 +43,20 @@ except getopt.error as err:
     # output error, and return with an error code
     print (str(err))
 
-"""
-The final script will retrieve the array instead of generating it
-"""
+
 try:
     arr = retrieve.func_retrieve()
 except:
     print("Error while retrieving input: dataset.txt not found")
     sys.exit("Program exiting")
 
-visual.func_visual(arr)
+# visual.func_visual(arr)
 
 # bootstrap arr to second_arr
 second_arr = bootstrap.func_bootstrap(arr)
 
-visual.func_visual(second_arr)
+# visual.func_visual(second_arr)
+
+export.func_export(second_arr)
+
+sys.exit("Program exiting")

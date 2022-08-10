@@ -4,7 +4,7 @@ import generate
 
 arr = generate.func_generate()
 
-file1 = open("dataset.txt", "w")  # write mode
+file1 = open("input.txt", "w")  # write mode
 
 
 arr_size = len(arr)
