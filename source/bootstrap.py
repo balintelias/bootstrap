@@ -9,7 +9,7 @@ def func_bootstrap(param):
     count = 0
     new_arr = []
     while (count < arr_size):   
-        index = np.random.randint(0, arr_size, size = 4000)
+        index = np.random.randint(0, arr_size, size = 1)
         count = count + 1
         new_element = np.array(param)[index]
         new_arr.append(new_element)
