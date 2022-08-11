@@ -16,12 +16,4 @@ def func_generate():
         newArr = np.random.randint(0, 100, size = 4)
         temp.extend(newArr)
         outer_temp.append(temp)
-
-
-
-    #print('-----Generated Random Array----')
-    #print(temp)
-
-    
-
     return outer_temp

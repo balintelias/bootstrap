@@ -2,11 +2,7 @@ import getopt, sys
 
 import numpy as np
 import matplotlib.pyplot as plt
-import generate
-import bootstrap
-import visual
-import retrieve
-import export
+import header
 
 help_msg = """Usage:
 -h --Help   
@@ -43,20 +39,21 @@ except getopt.error as err:
     # output error, and return with an error code
     print (str(err))
 
+user_input = input('Number:')
 
 try:
-    arr = retrieve.func_retrieve()
+    arr = header.retrieve()
 except:
     print("Error while retrieving input: dataset.csv not found")
     sys.exit("Program exiting")
 
-# visual.func_visual(arr)
+# header.visual(arr)
 
 # bootstrap arr to second_arr
-second_arr = bootstrap.func_bootstrap(arr)
+second_arr = header.bootstrap(arr)
 
-# visual.func_visual(second_arr)
+# header.visual(second_arr)
 
-export.func_export(second_arr)
+header.export(second_arr)
 
 sys.exit("Program exiting")

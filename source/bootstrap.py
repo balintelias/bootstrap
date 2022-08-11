@@ -16,5 +16,3 @@ def func_bootstrap(param):
     # print("new array size")
     # print(len(new_arr))
     return new_arr
-    
-    
