@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def func_export(param):
-    file2 = open("output.txt", "w")  # write mode
+    file2 = open("output.csv", "w")  # write mode
 
     """
     for items in param:
@@ -18,7 +18,7 @@ def func_export(param):
 
     file2.close()
 
-    file3 = open("output.txt", "r")
+    file3 = open("output.csv", "r")
     #read input to file
     content = file3.read()
     file3.close()
@@ -26,7 +26,7 @@ def func_export(param):
     content = content.replace(']', ' ')
     content = content.replace('[', '')
 
-    file4 = open("output.txt", "w")  # write mode
+    file4 = open("output.csv", "w")  # write mode
     #write output into file
     file4.write(content)
     file4.close()

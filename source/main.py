@@ -12,7 +12,7 @@ help_msg = """Usage:
 -h --Help   
 -o: --Output=
 
-The program requires the input file to be named dataset.txt and to be placed in the same directory.
+The program requires the input file to be named dataset.csv and to be placed in the same directory.
 """
 
 # Remove 1st argument from the
@@ -47,7 +47,7 @@ except getopt.error as err:
 try:
     arr = retrieve.func_retrieve()
 except:
-    print("Error while retrieving input: dataset.txt not found")
+    print("Error while retrieving input: dataset.csv not found")
     sys.exit("Program exiting")
 
 # visual.func_visual(arr)

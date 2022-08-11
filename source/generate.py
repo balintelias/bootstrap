@@ -6,13 +6,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def func_generate():
-    temp = []
-    newArr = np.random.randint(0, 100, size = 40)
-    temp.extend(newArr)
-    newArr = np.random.randint(40, 60, size = 20)
-    temp.extend(newArr)
-    newArr = np.random.randint(0, 100, size = 40)
-    temp.extend(newArr)
+    outer_temp = []
+    for x in range(5):
+        temp = []
+        newArr = np.random.randint(0, 100, size = 4)
+        temp.extend(newArr)
+        newArr = np.random.randint(40, 60, size = 2)
+        temp.extend(newArr)
+        newArr = np.random.randint(0, 100, size = 4)
+        temp.extend(newArr)
+        outer_temp.append(temp)
 
 
 
@@ -21,4 +24,4 @@ def func_generate():
 
     
 
-    return temp
+    return outer_temp

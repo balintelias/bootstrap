@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def func_retrieve():
 	temp = []
-	file1 = open("input.txt", "r")  # read mode
+	file1 = open("input.csv", "r")  # read mode
 
 	# init string
 	content = file1.read()
