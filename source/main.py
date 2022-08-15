@@ -22,35 +22,35 @@ options = "ho:"
 long_options = ["Help", "Output="]
 
 try:
-    # Parsing argument
-    arguments, values = getopt.getopt(argumentList, options, long_options)
-     
-    # checking each argument
-    for currentArgument, currentValue in arguments:
+	# Parsing argument
+	arguments, values = getopt.getopt(argumentList, options, long_options)
+	 
+	# checking each argument
+	for currentArgument, currentValue in arguments:
  
-        if currentArgument in ("-h", "--Help"):
-            print (help_msg)
-            sys.exit("Program exiting")
-             
-        elif currentArgument in ("-o", "--Output"):
-            print (("Enabling special output mode (% s)") % (currentValue))
-             
+		if currentArgument in ("-h", "--Help"):
+			print (help_msg)
+			sys.exit("Program exiting")
+			 
+		elif currentArgument in ("-o", "--Output"):
+			print (("Enabling special output mode (% s)") % (currentValue))
+			 
 except getopt.error as err:
-    # output error, and return with an error code
-    print (str(err))
-
-user_input = input('Number:')
+	# output error, and return with an error code
+	print (str(err))
 
 try:
-    arr = header.retrieve()
+	arr = header.retrieve()
 except:
-    print("Error while retrieving input: dataset.csv not found")
-    sys.exit("Program exiting")
+	print("Error while retrieving input: dataset.csv not found")
+	sys.exit("Program exiting")
+
+user_input = input('Number:')
 
 # header.visual(arr)
 
 # bootstrap arr to second_arr
-second_arr = header.bootstrap(arr)
+second_arr = header.bootstrap(arr, user_input)
 
 # header.visual(second_arr)
 

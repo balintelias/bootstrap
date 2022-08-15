@@ -46,6 +46,7 @@ def retrieve():
 	print("retrieve function return point")
 	return output
 
+
 # Python script for visualizing a dataset
 def visual(temp):
 	print("visual function entry point")
@@ -58,57 +59,56 @@ def visual(temp):
 	standard_deviation = np.std(temp, ddof=1)
 	print("sd1")
 	print(standard_deviation)
-	
+
 	# plotting
 	plt.plot(bins_count[1:], pdf)
 	plt.show()
 	print("visual function return point")
 
+
 # Python function for exporting the dataset
 def export(param):
 	print("export function entry point")
-	file2 = open("output.csv", "w")  # write mode
 
-	"""
-	for items in param:
-		file2.writelines(str([items]))
-	"""
-	for items in param:
-		for values in items:
-			file2.write(str([values]))
-
-	file2.close()
-
+	# using the open method with 'w' mode
+	# for creating a new csv file 'my_csv' with .csv extension
+	with open('output.csv', 'w', newline = '') as file:
+		writer = csv.writer(file, quoting = csv.QUOTE_NONNUMERIC,
+							delimiter = ' ')
+		writer.writerows(param)
+	
 	file3 = open("output.csv", "r")
 	#read input to file
 	content = file3.read()
 	file3.close()
 
-	content = content.replace(']', ' ')
-	content = content.replace('[', '')
+	content = content.replace(' ', ',')
 
 	file4 = open("output.csv", "w")  # write mode
 	#write output into file
 	file4.write(content)
 	file4.close()
+
 	print("export function return point")
 
 """
-bootstrap function is returning one array
-which is bootstrapped from the original array
-passed as a parameter
+bootstrap function is returning a new dataset with
+arbitrary size. the new datasert is bootstrapped from
+the original array passed as a parameter.
 """
-def bootstrap(param):
+def bootstrap(param, times):
 	print("bootstrap function entry point")
-	arr_size = len(param)
-	count = 0
 	new_arr = []
-	while (count < arr_size):   
-		index = np.random.randint(0, arr_size, size = 1)
-		count = count + 1
-		new_element = np.array(param)[index]
-		new_arr.append(new_element)
-	# print("new array size")
-	# print(len(new_arr))
+	for row in param:
+		count = 0
+		arr_size = len(row)
+		new_row = []
+		while count < int(times):
+			index = np.random.randint(0, arr_size, size = 1)
+			count = count + 1
+			new_element = np.array(row)[index]
+			new_element = int(new_element)
+			new_row.append(new_element)
+		new_arr.append(new_row)
 	print("bootstrap function return point")
 	return new_arr
