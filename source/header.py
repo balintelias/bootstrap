@@ -4,7 +4,6 @@ import csv
 
 # Python function for generating mock datasets
 def generate():
-	print("generate function entry point")
 	outer_temp = []
 	for x in range(5):
 		temp = []
@@ -15,12 +14,10 @@ def generate():
 		newArr = np.random.randint(0, 100, size = 4)
 		temp.extend(newArr)
 		outer_temp.append(temp)
-	print("generate function return point")
 	return outer_temp
 
 # Python function for retrieving the dataset from file
 def retrieve():
-	print("retrieve function entry point")
 	fileobject = open("input.csv", "r")
 	#read input to file
 	content = fileobject.read()
@@ -30,6 +27,7 @@ def retrieve():
 	#write output into file
 	fileobject.write(content)
 	fileobject.close()
+	# TODO: delete input-2.csv
 
 	# opening the 'input.csv' file to read its contents
 	with open('input-2.csv', newline = '') as file:
@@ -40,16 +38,11 @@ def retrieve():
 		output = []
 		for row in reader:
 			output.append(row[:])
-		
-	# for rows in output:
-	#	 print(rows) 
-	print("retrieve function return point")
 	return output
 
 
 # Python script for visualizing a dataset
 def visual(temp):
-	print("visual function entry point")
 	# getting data of the histogram
 	count, bins_count = np.histogram(temp, bins=100)
 
@@ -63,13 +56,10 @@ def visual(temp):
 	# plotting
 	plt.plot(bins_count[1:], pdf)
 	plt.show()
-	print("visual function return point")
 
 
 # Python function for exporting the dataset
 def export(param):
-	print("export function entry point")
-
 	# using the open method with 'w' mode
 	# for creating a new csv file 'my_csv' with .csv extension
 	with open('output.csv', 'w', newline = '') as file:
@@ -89,7 +79,6 @@ def export(param):
 	file4.write(content)
 	file4.close()
 
-	print("export function return point")
 
 """
 bootstrap function is returning a new dataset with
@@ -97,7 +86,6 @@ arbitrary size. the new datasert is bootstrapped from
 the original array passed as a parameter.
 """
 def bootstrap(param, times):
-	print("bootstrap function entry point")
 	new_arr = []
 	for row in param:
 		count = 0
@@ -110,5 +98,4 @@ def bootstrap(param, times):
 			new_element = int(new_element)
 			new_row.append(new_element)
 		new_arr.append(new_row)
-	print("bootstrap function return point")
 	return new_arr
