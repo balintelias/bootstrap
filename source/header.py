@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import os
 
 # Python function for generating mock datasets
 def generate():
@@ -17,8 +18,8 @@ def generate():
 	return outer_temp
 
 # Python function for retrieving the dataset from file
-def retrieve():
-	fileobject = open("input.csv", "r")
+def retrieve(filename):
+	fileobject = open(filename, "r")
 	#read input to file
 	content = fileobject.read()
 	fileobject.close()
@@ -27,7 +28,7 @@ def retrieve():
 	#write output into file
 	fileobject.write(content)
 	fileobject.close()
-	# TODO: delete input-2.csv
+
 
 	# opening the 'input.csv' file to read its contents
 	with open('input-2.csv', newline = '') as file:
@@ -38,6 +39,8 @@ def retrieve():
 		output = []
 		for row in reader:
 			output.append(row[:])
+
+	os.remove("input-2.csv")
 	return output
 
 
@@ -59,22 +62,22 @@ def visual(temp):
 
 
 # Python function for exporting the dataset
-def export(param):
+def export(param, filename):
 	# using the open method with 'w' mode
 	# for creating a new csv file 'my_csv' with .csv extension
-	with open('output.csv', 'w', newline = '') as file:
+	with open(filename, 'w', newline = '') as file:
 		writer = csv.writer(file, quoting = csv.QUOTE_NONNUMERIC,
 							delimiter = ' ')
 		writer.writerows(param)
 	
-	file3 = open("output.csv", "r")
+	file3 = open(filename, "r")
 	#read input to file
 	content = file3.read()
 	file3.close()
 
 	content = content.replace(' ', ',')
 
-	file4 = open("output.csv", "w")  # write mode
+	file4 = open(filename, "w")  # write mode
 	#write output into file
 	file4.write(content)
 	file4.close()
