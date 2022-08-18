@@ -13,3 +13,8 @@ A bemenet és kimenet opciókat az `-i:fájlnév`, illetve az `--Input=fájlnév
 Ezen kívül elérhető a `-h`/`--Help` flag, ami ennek az összefoglalónak a kompakt verziója.
 
 A program a bemenet sikeres megnyitása és olvasása után kéri a felhasználótól az új adathalmaz méretét. Ezután több interakcióra nincs szükség.
+
+## Dependencies
+
+- matplotlib.pyplot
+- numpy
