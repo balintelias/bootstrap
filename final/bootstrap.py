@@ -2,7 +2,6 @@ import getopt, sys
 import csv
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Python function for generating mock datasets
 def generate():
