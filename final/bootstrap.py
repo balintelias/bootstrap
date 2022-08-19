@@ -116,16 +116,17 @@ The -o:/--Output= flag may be used to specify the output file, but by default it
 
 inputfilename = "input.csv"
 outputfilename = "output.csv"
+DBG = 0
 
 # Remove 1st argument from the
 # list of command line arguments
 argumentList = sys.argv[1:]
 
 # Options
-options = "hi:o:"
+options = "hi:o:d"
  
 # Long options
-long_options = ["Help", "Input=", "Output="]
+long_options = ["Help", "Input=", "Output=","Debug"]
 
 try:
 	# Parsing argument
@@ -139,29 +140,39 @@ try:
 			sys.exit("Program exiting")
 
 		elif currentArgument in ("-i", "--Input"):
-			print (("Enabling special input mode (% s)") % (currentValue[1:]))
+			print (("Enabling special input mode: % s") % (currentValue[1:]))
 			inputfilename = currentValue[1:]
 
 		elif currentArgument in ("-o", "--Output"):
-			print (("Enabling special output mode (% s)") % (currentValue[1:]))
+			print (("Enabling special output mode: % s") % (currentValue[1:]))
 			outputfilename = currentValue[1:]
+
+		elif currentArgument in ("-d", "--Debug"):
+			print("Enabling Debug mode")
+			DBG = 1
+
 
 except getopt.error as err:
 	# output error, and return with an error code
 	print (str(err))
 
 try:
-	print(inputfilename)
 	arr = retrieve(inputfilename)
+	if(DBG):
+		print("DBG: Input file opened, data imported")
 except:
 	print("Error while retrieving input: input file not found")
 	sys.exit("Program exiting")
 
-user_input = input('Number:')
+user_input = input('Size of new dataset:')
 
 # bootstrap arr to second_arr
 second_arr = bootstrap(arr, user_input)
+if(DBG):
+	print("DBG: Bootstrapping finished")
 
 export(second_arr, outputfilename)
+if(DBG):
+	print("DBG: New dataset exported")
 
-sys.exit("Program exiting")
+# sys.exit("Program exiting")
