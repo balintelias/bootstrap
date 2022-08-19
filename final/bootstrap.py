@@ -95,7 +95,7 @@ def bootstrap(param, times):
 		count = 0
 		arr_size = len(row)
 		new_row = []
-		while count < int(times):
+		while count < times:
 			index = np.random.randint(0, arr_size, size = 1)
 			count = count + 1
 			new_element = np.array(row)[index]
@@ -108,11 +108,13 @@ help_msg = """Usage:
 -h --Help
 -i: --Input=
 -o: --Output=
+-d --Debug
 
 The program needs the input file to be in the same directory.
 The -i:/--Input= flag may be used to specify the input file, but by default it's input.csv.
 The -o:/--Output= flag may be used to specify the output file, but by default it's output.csv.
 """
+exit_msg = "Program exiting"
 
 inputfilename = "input.csv"
 outputfilename = "output.csv"
@@ -137,7 +139,7 @@ try:
  
 		if currentArgument in ("-h", "--Help"):
 			print (help_msg)
-			sys.exit("Program exiting")
+			sys.exit(exit_msg)
 
 		elif currentArgument in ("-i", "--Input"):
 			print (("Enabling special input mode: % s") % (currentValue[1:]))
@@ -155,6 +157,7 @@ try:
 except getopt.error as err:
 	# output error, and return with an error code
 	print (str(err))
+	sys.exit(exit_msg)
 
 try:
 	arr = retrieve(inputfilename)
@@ -162,9 +165,15 @@ try:
 		print("DBG: Input file opened, data imported")
 except:
 	print("Error while retrieving input: input file not found")
-	sys.exit("Program exiting")
+	sys.exit(exit_msg)
 
 user_input = input('Size of new dataset:')
+
+try:
+	user_input = int(user_input)
+except:
+	print(("Cannot cast input (% s) to integer.") % (user_input))
+	sys.exit(exit_msg)
 
 # bootstrap arr to second_arr
 second_arr = bootstrap(arr, user_input)
@@ -174,5 +183,3 @@ if(DBG):
 export(second_arr, outputfilename)
 if(DBG):
 	print("DBG: New dataset exported")
-
-# sys.exit("Program exiting")
