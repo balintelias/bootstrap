@@ -117,7 +117,7 @@ exit_msg = "Program exiting"
 
 inputfilename = "input.csv"
 outputfilename = "output.csv"
-DBG = 0
+DBG = False
 
 # Remove 1st argument from the
 # list of command line arguments
@@ -150,7 +150,7 @@ try:
 
 		elif currentArgument in ("-d", "--Debug"):
 			print("Enabling Debug mode")
-			DBG = 1
+			DBG = True
 
 
 except getopt.error as err:
