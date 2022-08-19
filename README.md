@@ -16,5 +16,15 @@ A program a bemenet sikeres megnyitása és olvasása után kéri a felhasznál�
 
 ## Dependencies
 
-- matplotlib.pyplot
+A felhasznált csomagok:
+
 - numpy
+- matplotlib.pyplot
+
+pip segítségével telepíthetők: `pip install numpy`
+
+A matplotlib.pyplot csomag a végső programban nem szerepel, a fejlesztéshez és ellenőrzéshez használtam.
+
+## Forráskód szerkesztése
+
+A kész program forráskódja a [final](./final/) könyvtárban elérhető python file, de a repository tartalmazza a [source](./source/) mappában a fejlesztéshez használt fájlokat, és fejléceket is.
