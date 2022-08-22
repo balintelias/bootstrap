@@ -3,6 +3,12 @@ import csv
 import os
 import numpy as np
 
+# TODO: pontosvessző
+
+# TODO: sorok első tagja maradjon azonosító
+
+# TODO: output filename az input filename + valami (pl rep. number)
+
 # Python function for generating mock datasets
 def generate():
 	outer_temp = []
