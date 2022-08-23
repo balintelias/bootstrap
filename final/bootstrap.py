@@ -7,8 +7,6 @@ import numpy as np
 
 # TODO: sorok első tagja maradjon azonosító
 
-# TODO: output filename az input filename + valami (pl rep. number)
-
 # Python function for generating mock datasets
 def generate():
 	outer_temp = []
@@ -29,7 +27,7 @@ def retrieve(filename):
 	#read input to file
 	content = fileobject.read()
 	fileobject.close()
-	content = content.replace(',', ' ')
+	content = content.replace(';', ' ') #TODO: pontosvessző
 	fileobject = open("input-2.csv", "w")  # write mode
 	#write output into file
 	fileobject.write(content)
@@ -111,18 +109,13 @@ def bootstrap(param, times):
 
 help_msg = """Usage:
 -h --Help
--i: --Input=
--o: --Output=
 -d --Debug
 
 The program needs the input file to be in the same directory.
-The -i:/--Input= flag may be used to specify the input file, but by default it's input.csv.
-The -o:/--Output= flag may be used to specify the output file, but by default it's output.csv.
+
 """
 exit_msg = "Program exiting"
 
-inputfilename = "input.csv"
-outputfilename = "output.csv"
 DBG = False
 
 # Remove 1st argument from the
@@ -133,7 +126,7 @@ argumentList = sys.argv[1:]
 options = "hi:o:d"
  
 # Long options
-long_options = ["Help", "Input=", "Output=","Debug"]
+long_options = ["Help", "Debug"]
 
 try:
 	# Parsing argument
@@ -146,14 +139,6 @@ try:
 			print (help_msg)
 			sys.exit(exit_msg)
 
-		elif currentArgument in ("-i", "--Input"):
-			print (("Enabling special input mode: % s") % (currentValue[1:]))
-			inputfilename = currentValue[1:]
-
-		elif currentArgument in ("-o", "--Output"):
-			print (("Enabling special output mode: % s") % (currentValue[1:]))
-			outputfilename = currentValue[1:]
-
 		elif currentArgument in ("-d", "--Debug"):
 			print("Enabling Debug mode")
 			DBG = True
@@ -163,6 +148,8 @@ except getopt.error as err:
 	# output error, and return with an error code
 	print (str(err))
 	sys.exit(exit_msg)
+
+inputfilename = input("Name of the input file:")
 
 try:
 	arr = retrieve(inputfilename)
@@ -179,6 +166,10 @@ try:
 except:
 	print(("Cannot cast input (% s) to integer.") % (user_input))
 	sys.exit(exit_msg)
+
+outputfilename = inputfilename
+outputfilename = outputfilename[:5]
+outputfilename = outputfilename + "_rep_" + str(user_input) + ".csv"
 
 # bootstrap arr to second_arr
 second_arr = bootstrap(arr, user_input)
