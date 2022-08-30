@@ -27,7 +27,7 @@ content = content.replace('  ', ' ')
 content = content.replace('\n ', '\n')
 content = content[1:]
 content = content[:-1]
-content = content.replace(' ',',')
+content = content.replace(' ',';')
 
 file6 = open("input.csv", "w")  # write mode
 file6.write(content)
