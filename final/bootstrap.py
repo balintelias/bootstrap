@@ -29,7 +29,8 @@ def retrieve(filename):
 	#write output into file
 	fileobject.write(content)
 	fileobject.close()
-	print(content)
+	if(DBG):
+		print(content)
 
 
 	# opening the 'input.csv' file to read its contents
