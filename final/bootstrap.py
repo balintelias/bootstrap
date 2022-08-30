@@ -3,10 +3,6 @@ import csv
 import os
 import numpy as np
 
-# TODO: pontosvessző
-
-# TODO: sorok első tagja maradjon azonosító
-
 # Python function for generating mock datasets
 def generate():
 	outer_temp = []
@@ -27,25 +23,34 @@ def retrieve(filename):
 	#read input to file
 	content = fileobject.read()
 	fileobject.close()
-	content = content.replace(';', ' ') #TODO: pontosvessző
+	content = content.replace(';', ' ')
+
 	fileobject = open("input-2.csv", "w")  # write mode
 	#write output into file
 	fileobject.write(content)
 	fileobject.close()
+	print(content)
 
 
 	# opening the 'input.csv' file to read its contents
 	with open('input-2.csv', newline = '') as file:
-		reader = csv.reader(file, quoting = csv.QUOTE_NONNUMERIC,
+		reader = csv.reader(file, quoting = csv.QUOTE_NONE,
 							delimiter = ' ')
-	 
+
 		# storing all the rows in an output list
 		output = []
 		for row in reader:
 			output.append(row[:])
-
 	os.remove("input-2.csv")
 	return output
+
+def remove_ID(param):
+	excess = []
+	for row in param:
+		currentID = row.pop(0)
+		# print(currentID)
+		excess.append(currentID)
+	return excess
 
 
 # Python script for visualizing a dataset
@@ -66,11 +71,16 @@ def visual(temp):
 
 
 # Python function for exporting the dataset
-def export(param, filename):
+def export(id_param, param, filename):
+	# combine id_param and param
+	for row in param:
+		currentID = id_param.pop(0)
+		row.insert(0, currentID)
+
 	# using the open method with 'w' mode
 	# for creating a new csv file 'my_csv' with .csv extension
 	with open(filename, 'w', newline = '') as file:
-		writer = csv.writer(file, quoting = csv.QUOTE_NONNUMERIC,
+		writer = csv.writer(file, quoting = csv.QUOTE_NONE,
 							delimiter = ' ')
 		writer.writerows(param)
 	
@@ -79,7 +89,7 @@ def export(param, filename):
 	content = file3.read()
 	file3.close()
 
-	content = content.replace(' ', ',')
+	content = content.replace(' ', ';')
 
 	file4 = open(filename, "w")  # write mode
 	#write output into file
@@ -151,6 +161,7 @@ except getopt.error as err:
 
 inputfilename = input("Name of the input file:")
 
+# get input
 try:
 	arr = retrieve(inputfilename)
 	if(DBG):
@@ -158,6 +169,9 @@ try:
 except:
 	print("Error while retrieving input: input file not found")
 	sys.exit(exit_msg)
+
+# remove ID from the lists
+id_list = remove_ID(arr)
 
 user_input = input('Size of new dataset:')
 
@@ -168,7 +182,7 @@ except:
 	sys.exit(exit_msg)
 
 outputfilename = inputfilename
-outputfilename = outputfilename[:5]
+outputfilename = outputfilename[:-4]
 outputfilename = outputfilename + "_rep_" + str(user_input) + ".csv"
 
 # bootstrap arr to second_arr
@@ -176,6 +190,6 @@ second_arr = bootstrap(arr, user_input)
 if(DBG):
 	print("DBG: Bootstrapping finished")
 
-export(second_arr, outputfilename)
+export(id_list, second_arr, outputfilename)
 if(DBG):
 	print("DBG: New dataset exported")
