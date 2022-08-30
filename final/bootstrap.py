@@ -3,46 +3,17 @@ import csv
 import os
 import numpy as np
 
-# Python function for generating mock datasets
-def generate():
-	outer_temp = []
-	for x in range(5):
-		temp = []
-		newArr = np.random.randint(0, 100, size = 4)
-		temp.extend(newArr)
-		newArr = np.random.randint(40, 60, size = 2)
-		temp.extend(newArr)
-		newArr = np.random.randint(0, 100, size = 4)
-		temp.extend(newArr)
-		outer_temp.append(temp)
-	return outer_temp
-
 # Python function for retrieving the dataset from file
 def retrieve(filename):
-	fileobject = open(filename, "r")
-	#read input to file
-	content = fileobject.read()
-	fileobject.close()
-	content = content.replace(';', ' ')
-
-	fileobject = open("input-2.csv", "w")  # write mode
-	#write output into file
-	fileobject.write(content)
-	fileobject.close()
-	if(DBG):
-		print(content)
-
-
 	# opening the 'input.csv' file to read its contents
-	with open('input-2.csv', newline = '') as file:
+	with open('input.csv', newline = '') as file:
 		reader = csv.reader(file, quoting = csv.QUOTE_NONE,
-							delimiter = ' ')
+							delimiter = ';')
 
 		# storing all the rows in an output list
 		output = []
 		for row in reader:
 			output.append(row[:])
-	os.remove("input-2.csv")
 	return output
 
 def remove_ID(param):
@@ -52,23 +23,6 @@ def remove_ID(param):
 		# print(currentID)
 		excess.append(currentID)
 	return excess
-
-
-# Python script for visualizing a dataset
-def visual(temp):
-	# getting data of the histogram
-	count, bins_count = np.histogram(temp, bins=100)
-
-	# finding the PDF of the histogram using count values
-	pdf = count / sum(count)
-
-	standard_deviation = np.std(temp, ddof=1)
-	print("sd1")
-	print(standard_deviation)
-
-	# plotting
-	plt.plot(bins_count[1:], pdf)
-	plt.show()
 
 
 # Python function for exporting the dataset
@@ -82,21 +36,8 @@ def export(id_param, param, filename):
 	# for creating a new csv file 'my_csv' with .csv extension
 	with open(filename, 'w', newline = '') as file:
 		writer = csv.writer(file, quoting = csv.QUOTE_NONE,
-							delimiter = ' ')
+							delimiter = ';')
 		writer.writerows(param)
-	
-	file3 = open(filename, "r")
-	#read input to file
-	content = file3.read()
-	file3.close()
-
-	content = content.replace(' ', ';')
-
-	file4 = open(filename, "w")  # write mode
-	#write output into file
-	file4.write(content)
-	file4.close()
-
 
 """
 bootstrap function is returning a new dataset with
@@ -118,6 +59,7 @@ def bootstrap(param, times):
 		new_arr.append(new_row)
 	return new_arr
 
+# init values
 help_msg = """Usage:
 -h --Help
 -d --Debug
@@ -126,7 +68,6 @@ The program needs the input file to be in the same directory.
 
 """
 exit_msg = "Program exiting"
-
 DBG = False
 
 # Remove 1st argument from the
@@ -134,7 +75,7 @@ DBG = False
 argumentList = sys.argv[1:]
 
 # Options
-options = "hi:o:d"
+options = "hd"
  
 # Long options
 long_options = ["Help", "Debug"]
