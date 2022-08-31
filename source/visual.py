@@ -1,3 +1,12 @@
+# Copyright (C) 2022 Bálint Éliás
+# You can find the copyright disclaimer in final/bootstrap.py
+#
+# This code was used in developing the full program,
+# but this particular file is not used in it
+
+# contact me at: ebalint [at] gmail [dot] com
+
+
 """
 Python script for visualizing a dataset
 """

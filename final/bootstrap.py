@@ -1,3 +1,21 @@
+# bootstrap.py, a Python program useful for bootstrapping complex datasets
+# Copyright (C) 2022 Bálint Éliás
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# contact me at: ebalint [at] gmail [dot] com
+
 import getopt, sys
 import csv
 import os
@@ -58,6 +76,12 @@ def bootstrap(param, times):
 			new_row.append(new_element)
 		new_arr.append(new_row)
 	return new_arr
+
+#init:
+print("""bootstrap.py  Copyright (C) 2022  Bálint Éliás
+This program comes with ABSOLUTELY NO WARRANTY; for details,
+see the documentation, or the GNU GPLv3 License.
+""")
 
 # init values
 help_msg = """Usage:
