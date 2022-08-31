@@ -4,7 +4,7 @@
 # This code was used in developing the full program,
 # but this particular file is not used in it
 
-# contact me at: ebalint [at] gmail [dot] com
+# contact me at: ebalint896 [at] gmail [dot] com
 
 
 """

@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# contact me at: ebalint [at] gmail [dot] com
+# contact me at: ebalint896 [at] gmail [dot] com
 
 import getopt, sys
 import csv
