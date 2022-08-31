@@ -6,13 +6,15 @@ A program képes párhuzamosan több adathalmazt párhuzamosan bármekkora menny
 
 ## Használat
 
-A program egy .csv fájlt vár el bemenetként, aminek az alapértelmezett neve input.csv, a kimenetet pedig az output.csv fájl tartalmazza. A program soronként kezeli az adathalmazt.
+A program egy pontosvesszővel elválaszott .csv fájlt vár el bemenetként, a kimenet ugyanilyen formájú. A program soronként kezeli az adathalmazt.
 
-A bemenet és kimenet opciókat az `-i:fájlnév`, illetve az `--Input=fájlnév`, valamint az `-o:fájlnév` és `--Output=fájlnév` flagekkel lehet állítani.
+A bemeneti fájl nevét a program futás közben kéri a felhasználótól, a kimeneti fájl neve pedig *bemenet*_rep_*méret*.csv formátumú.
+
+A bemeneti fájl első oszlopa azonosítókból állhat, ezeket a program nem változtatja. A fájlban az adatok csak egész számok lehetnek.
 
 Ezen kívül elérhető a `-h`/`--Help` flag, ami ennek az összefoglalónak a kompakt verziója.
 
-A `-d`/`--Debug` flag
+A `-d`/`--Debug` flag diagnosztikai üzeneteket jelenít meg a program futása közben
 
 A program a bemenet sikeres megnyitása és olvasása után kéri a felhasználótól az új adathalmaz méretét. Ezután több interakcióra nincs szükség.
 
@@ -29,4 +31,8 @@ A matplotlib.pyplot csomag a végső programban nem szerepel, a fejlesztéshez �
 
 ## Forráskód szerkesztése
 
-A kész program forráskódja a [final](./final/) könyvtárban elérhető python file, de a repository tartalmazza a [source](./source/) mappában a fejlesztéshez használt fájlokat, és fejléceket is.
+A kész program forráskódja a [final](./final/) könyvtárban elérhető python file, de a repository tartalmazza a [source](./source/) mappában a fejlesztéshez és ellenőrzéshez használt fájlokat, és fejléceket is.
+
+## Licenszek
+
+A numpy 3 pontos BSD licensszel van publikálva, ez a program pedig GNU GPLv3 licensszel. További információ a dokumentációban található.
