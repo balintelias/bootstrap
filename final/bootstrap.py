@@ -21,18 +21,31 @@ import csv
 import os
 import numpy as np
 
+
+def def_config():
+	with open("config.txt", "w") as writefile:
+		writefile.write(';')
+	print("default config created.")
+
+def load_config():
+	with open("config.txt", "r") as file1:
+		read_content = file1.read()
+		
+		DELIMITER_CHAR = read_content[0]
+
+
 # Python function for retrieving the dataset from file
 def retrieve(filename):
-	# opening the 'input.csv' file to read its contents
-	with open('input.csv', newline = '') as file:
+	# opening the 'filename' file to read its contents
+	with open(filename, newline = '') as file:
 		reader = csv.reader(file, quoting = csv.QUOTE_NONE,
-							delimiter = ';')
-
-		# storing all the rows in an output list
+						delimiter = ';')
+			# storing all the rows in an output list
 		output = []
 		for row in reader:
 			output.append(row[:])
 	return output
+
 
 def remove_ID(param):
 	excess = []
@@ -77,13 +90,17 @@ def bootstrap(param, times):
 		new_arr.append(new_row)
 	return new_arr
 
-#init:
-print("""bootstrap.py  Copyright (C) 2022  Bálint Éliás
+"""
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			END OF FUNCTION DEFINITIONS, MAIN:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+"""
+
+init_msg = """bootstrap.py  Copyright (C) 2022  Bálint Éliás
 This program comes with ABSOLUTELY NO WARRANTY; for details,
 see the documentation, or the GNU GPLv3 License.
-""")
+"""
 
-# init values
 help_msg = """Usage:
 -h --Help
 -d --Debug
@@ -91,7 +108,14 @@ help_msg = """Usage:
 The program needs the input file to be in the same directory.
 
 """
+
 exit_msg = "Program exiting"
+
+DELIMITER_CHAR = ''
+
+
+# init:
+print(init_msg)
 DBG = False
 
 # Remove 1st argument from the
@@ -124,6 +148,20 @@ except getopt.error as err:
 	# output error, and return with an error code
 	print (str(err))
 	sys.exit(exit_msg)
+
+# check if config file is present, if not, create default config
+try:
+	load_config()
+	if(DBG):
+		print("DBG: Config loaded")
+except:
+	def_config()
+	if(DBG):
+		print("DBG: default config created")
+	load_config()
+	if(DBG):
+		print("DBG: Config loaded")
+
 
 inputfilename = input("Name of the input file:")
 
